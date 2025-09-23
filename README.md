@@ -82,9 +82,30 @@ This policy is placed under **User Configuration** and as a **Preference** (not 
 
 ---
 <h3>3. Restrict Access to Control Panel</h3>  
-- Prevents users from accessing Control Panel and system settings.  
-- <b>Configuration Path:</b>  
-  `User Configuration → Policies → Administrative Templates → Control Panel → Prohibit access to Control Panel and PC settings`  
+
+<b>Introduction</b>  
+The Restrict Access to Control Panel policy is a security and administrative control in Active Directory that prevents users from accessing the Windows Control Panel. The Control Panel provides options to change critical system settings such as network configurations, user accounts, and installed programs. Without restrictions, users may inadvertently or intentionally modify system settings, which can cause security risks or operational issues.  
+
+<b>Purpose of the Policy</b>  
+The main purpose of restricting access to the Control Panel is to enforce centralized management of system settings. By blocking user access, organizations can ensure that only administrators retain control over configurations. This prevents accidental misconfigurations by end users and reduces the risk of unauthorized applications being installed, security settings being changed, or device configurations being altered in ways that could weaken the organization’s security posture.  
+
+<b>Implementation Steps</b>  
+
+- <b>Step 1:</b> In **GPMC**, right-click on the domain → **Create GPO in this domain, and Link it here** → Give the policy a meaningful name (e.g., "Restrict Control Panel Policy").  
+
+- <b>Step 2:</b> Right-click on the new GPO and select **Edit**. Since this is a user-focused restriction, expand:  
+  `User Configuration → Policies → Administrative Templates → Control Panel`  
+
+- <b>Step 3:</b> Locate and enable the setting:  
+  **Prohibit access to Control Panel and PC settings**.  
+
+- <b>Step 4:</b> Apply and close the editor. Once the policy is refreshed, users will no longer be able to access the Control Panel.
+
+<b>Reasoning:</b>  
+This policy is placed under **User Configuration → Policies** because it applies directly to end-user accounts and should be strictly enforced without giving users the option to modify it.  
+
+![Restrict Control Panel Screenshot](images/restrict_controlpanel.png) 
+![Restrict Control Panel Screenshot](images/warning.jpg) 
 
 ---
 
@@ -110,6 +131,6 @@ This project strengthened my understanding of how **Active Directory Group Polic
 ### Screenshots
   
   
-![Restrict Control Panel Screenshot](images/ad/restrict-control-panel.png)  
+ 
 ![USB Restriction Screenshot](images/ad/usb-restriction.png)  
 ![Account Lockout Policy Screenshot](images/ad/account-lockout.png)  

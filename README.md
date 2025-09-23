@@ -52,13 +52,35 @@ This GPO enforces strong password requirements for all users in the domain to en
 ---
 
 <h3>2. Drive Mapping</h3>  
-- Automatically maps network drives for users at login.  
-- <b>Configuration Path:</b>  
+
+<b>Introduction</b>  
+Drive mapping is an important feature in Active Directory environments that allows administrators to provide users with seamless access to shared resources. Instead of requiring users to remember and manually connect to shared network paths, drive mapping assigns a shared folder on a file server to a specific drive letter (e.g., H: or Z:) on each user’s workstation. This makes accessing shared data as simple as opening a local drive.  
+
+<b>Purpose of Drive Mapping</b>  
+The main purpose of drive mapping is to simplify access to organizational files while ensuring central management and security. For example, a department like Finance or HR may have a shared folder stored on a file server. Through drive mapping, all employees in that department automatically see the shared folder as a drive on their computer. This approach ensures consistency, improves collaboration, and enforces the principle of least privilege by granting access only to the correct users or groups.  
+
+<b>Implementation Steps</b>  
+
+- <b>Step 1:</b> In **GPMC**, right-click on the domain → **Create GPO in this domain, and Link it here** → Give the policy a meaningful name (e.g., "Drive Mapping Policy").  
+
+- <b>Step 2:</b> Right-click on the new GPO and select **Edit**. Since drive mappings are specific to users, expand:  
   `User Configuration → Preferences → Windows Settings → Drive Maps`  
-- <b>Reason:</b> Applied as a preference so users can modify mappings later.  
+
+- <b>Step 3:</b> Right-click on **Drive Maps** → **New → Mapped Drive**.  
+
+- <b>Step 4:</b> In the dialog box:  
+  - Enter the **location of the shared folder** (e.g., `\\FileServer\Finance`) in the “Location” field.  
+  - Choose the **Drive Letter** to map (e.g., H:).  
+  - Select **Update** action so that changes automatically apply to users.  
+
+- <b>Step 5:</b> Apply and close the policy editor. When the user logs in, the mapped drive will automatically appear on their workstation.
+  ![Drive Mapping Screenshot](images/drive_mapping.png)
+
+
+<b>Reasoning:</b>  
+This policy is placed under **User Configuration** and as a **Preference** (not Policy) so users have the flexibility to later modify the mapped drive if needed.
 
 ---
-
 <h3>3. Restrict Access to Control Panel</h3>  
 - Prevents users from accessing Control Panel and system settings.  
 - <b>Configuration Path:</b>  
@@ -87,7 +109,7 @@ This project strengthened my understanding of how **Active Directory Group Polic
 
 ### Screenshots
   
-![Drive Mapping Screenshot](images/ad/drive-mapping.png)  
+  
 ![Restrict Control Panel Screenshot](images/ad/restrict-control-panel.png)  
 ![USB Restriction Screenshot](images/ad/usb-restriction.png)  
 ![Account Lockout Policy Screenshot](images/ad/account-lockout.png)  

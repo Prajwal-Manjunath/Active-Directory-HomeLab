@@ -110,27 +110,63 @@ This policy is placed under **User Configuration → Policies** because it appli
 ---
 
 <h3>4. Prevent USB Storage</h3>  
-- Blocks usage of USB storage devices.  
-- <b>Configuration Path:</b>  
-  `Computer Configuration → Policies → Administrative Templates → System → Removable Storage Access → All Removable Storage classes: Deny all access`  
+
+<b>Introduction</b>  
+The Prevent USB Storage policy is a security control in Active Directory designed to block users from connecting and using unauthorized USB storage devices on their computers. USB devices such as flash drives and external hard disks pose significant security risks, including the potential for data theft, malware infections, and unauthorized file transfers. By enforcing this policy, organizations can protect sensitive information and reduce the risk of insider threats or accidental data leakage.  
+
+<b>Purpose of the Policy</b>  
+The purpose of this policy is to restrict the use of removable storage devices within the enterprise environment. Many security breaches occur when confidential data is copied onto portable devices or when malicious software is introduced from an infected USB drive. Preventing the use of USB storage ensures that all data transfers happen through secure, monitored channels, thereby improving compliance with security policies and regulatory requirements.  
+
+<b>Implementation Steps</b>  
+
+- <b>Step 1:</b> In **GPMC**, right-click on the domain → **Create GPO in this domain, and Link it here** → Give the policy a meaningful name (e.g., "USB Storage Restriction Policy").  
+
+- <b>Step 2:</b> Right-click on the new GPO and select **Edit**. Since this restriction is system-wide, expand:  
+  `Computer Configuration → Policies → Administrative Templates → System → Removable Storage Access`  
+
+- <b>Step 3:</b> Enable the setting:  
+  **All Removable Storage classes: Deny all access**.  
+
+- <b>Step 4:</b> Apply and close the editor. Once the policy is refreshed, users will no longer be able to access or use USB storage devices.  
+
+<b>Reasoning:</b>  
+This policy is applied under **Computer Configuration → Policies** because it affects the system as a whole, regardless of which user logs in. By applying it as a strict policy, administrators ensure that no user can bypass the restriction.  
+
+![USB Restriction Screenshot](images/usb_restriction.png)
 
 ---
 
 <h3>5. Account Lockout Policy</h3>  
-- Locks accounts after a defined number of failed login attempts.  
-- <b>Configuration Path:</b>  
-  `Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Account Lockout Policy`  
-- <b>Purpose:</b> Critical security control to prevent brute force attacks.  
 
+<b>Introduction</b>  
+The Account Lockout Policy is a security feature in Active Directory that automatically locks a user account after a defined number of failed login attempts. This prevents attackers from using brute force or password-guessing techniques to gain unauthorized access to user accounts. Once an account is locked, the user must either wait until the lockout duration expires or contact an administrator to unlock the account.  
+
+<b>Purpose of the Policy</b>  
+The purpose of this policy is to protect user accounts from compromise by limiting repeated login attempts. In enterprise environments, user credentials are one of the primary targets for attackers. By enforcing account lockout rules, organizations can slow down or completely block automated password-cracking attempts. The policy also provides an early warning mechanism for administrators, since frequent account lockouts can indicate a potential security incident or malicious activity on the network.  
+
+<b>Implementation Steps</b>  
+
+- <b>Step 1:</b> In **GPMC**, right-click on the domain → **Create GPO in this domain, and Link it here** → Give the policy a meaningful name (e.g., "Account Lockout Policy").  
+
+- <b>Step 2:</b> Right-click on the new GPO and select **Edit**. Since this is a system-wide security control, expand:  
+  `Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Account Lockout Policy`  
+
+- <b>Step 3:</b> Configure the following attributes:  
+  - **Account Lockout Threshold** (e.g., 5 invalid attempts)  
+  - **Account Lockout Duration** (e.g., 30 minutes)  
+  - **Reset Account Lockout Counter After** (e.g.,  30 minutes)  
+
+- <b>Step 4:</b> Apply and close the editor. Once the policy is refreshed, accounts will automatically lock after repeated failed logins.  
+
+<b>Reasoning:</b>  
+This policy is applied under **Computer Configuration → Policies** because it must enforce protection across all systems in the domain, regardless of which user logs in. It is a critical safeguard against brute-force attacks and strengthens overall account security.
+
+![Account Lockout Policy Screenshot](images/account_lockout.png) 
+  
 ---
 
-<h2>Result</h2>
-This project strengthened my understanding of how **Active Directory Group Policy Management** is used in real IT environments. By implementing password policies, account lockouts, drive mapping, and access restrictions, I learned how enterprises enforce security and usability at scale using centralized GPOs.  
-<br />
-
-### Screenshots
   
   
  
-![USB Restriction Screenshot](images/ad/usb-restriction.png)  
-![Account Lockout Policy Screenshot](images/ad/account-lockout.png)  
+ 
+ 

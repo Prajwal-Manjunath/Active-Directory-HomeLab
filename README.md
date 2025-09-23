@@ -44,7 +44,8 @@ This GPO enforces strong password requirements for all users in the domain to en
   - Password complexity (uppercase, lowercase, numbers, special characters)  
   - Maximum password age  
   - Enforce password history
- ![Password Policy Screenshot](images\password-policy.png)  
+ ![Password Policy Screenshot](/images/password_policy.png)
+ ![Password Policy Screenshot](/images/password_policy_complexity_requirments.png) 
 
 - <b>Step 5:</b> Click **Apply** and close the editor. The policy will now be enforced across the domain.  
 

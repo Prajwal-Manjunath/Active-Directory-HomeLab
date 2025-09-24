@@ -4,25 +4,49 @@
 This project focuses on building and testing Group Policies in a Windows Server Active Directory (AD) lab environment. Using the **Group Policy Management Console (GPMC)**, I created and enforced policies to improve security and user management. The project demonstrates how centralized policy management can be applied to control user access, enforce security standards, and manage system configurations across a domain.
 <br />
 
+<h2>📑 Table of Contents</h2>
+
+- [Objectives](#objectives)  
+- [What I Learned](#what-i-learned)  
+- [Group Policy Objects (GPOs) Implemented](#group-policy-objects)  
+  - [Password Policy](#password-policy)  
+  - [Drive Mapping](#drive-mapping)  
+  - [Restrict Access to Control Panel](#restrict-control-panel)  
+  - [Prevent USB Storage](#prevent-usb-storage)  
+  - [Account Lockout Policy](#account-lockout-policy)  
+- [File Sharing and Storage Management](#file-sharing)
+
+---
+
+<a id="objectives"></a
 <h2>Objectives</h2>
 
 - <b>Install and Configure GPMC:</b> Add Group Policy Management Console via Server Manager.  
 - <b>Understand GPMC Structure:</b> Learn differences between User Configuration vs. Computer Configuration and Policies vs. Preferences.  
 - <b>Enforce Security Policies:</b> Apply Password Policy and Account Lockout Policy.  
 - <b>Manage User Access:</b> Restrict Control Panel access and block USB storage devices.  
-- <b>Improve User Experience:</b> Configure Drive Mapping for seamless network drive access.  
+- <b>Improve User Experience:</b> Configure Drive Mapping for seamless network drive access.
+- <b>Manage File Storage Efficiently:</b> Configure shared folders, NTFS/share permissions, FSRM quotas, and file screening.
 
+--- 
+
+<a id="what-i-learned"></a>
 <h2>What I Learned</h2>
 
 - How to install and set up **Group Policy Management Console (GPMC)**.  
 - Difference between **User Configuration** (applies to users) and **Computer Configuration** (applies to systems).  
 - Difference between **Policies** (enforced, not changeable by users) and **Preferences** (default settings that users can modify).  
-- Practical implementation of GPOs to enforce enterprise security standards.  
+- Practical implementation of GPOs to enforce enterprise security standards.
+- How to configure **file sharing** with both NTFS and share permissions for secure access control.  
+- How to implement **FSRM (File Server Resource Manager)** for quotas and file screening to optimize storage and enforce compliance.  
+- The importance of combining GPOs and storage policies to build a **secure, efficient, and enterprise-ready Active Directory environment**.
 
 ---
 
+<a id="group-policy-objects"></a>
 <h2>Group Policy Objects (GPOs) Implemented</h2>
 
+<a id="password-policy"></a>
 <h3>1. Password Policy</h3>  
 
 This GPO enforces strong password requirements for all users in the domain to enhance security.  
@@ -51,6 +75,7 @@ This GPO enforces strong password requirements for all users in the domain to en
 
 ---
 
+<a id="drive-mapping"></a>
 <h3>2. Drive Mapping</h3>  
 
 <b>Introduction</b>  
@@ -81,6 +106,7 @@ The main purpose of drive mapping is to simplify access to organizational files 
 This policy is placed under **User Configuration** and as a **Preference** (not Policy) so users have the flexibility to later modify the mapped drive if needed.
 
 ---
+<a id="restrict-control-panel"></a>
 <h3>3. Restrict Access to Control Panel</h3>  
 
 <b>Introduction</b>  
@@ -108,7 +134,7 @@ This policy is placed under **User Configuration → Policies** because it appli
 ![Restrict Control Panel Screenshot](images/warning.jpg) 
 
 ---
-
+<a id="prevent-usb-storage"></a>
 <h3>4. Prevent USB Storage</h3>  
 
 <b>Introduction</b>  
@@ -135,7 +161,7 @@ This policy is applied under **Computer Configuration → Policies** because it 
 ![USB Restriction Screenshot](images/usb_restriction.png)
 
 ---
-
+<a id="account-lockout-policy"></a>
 <h3>5. Account Lockout Policy</h3>  
 
 <b>Introduction</b>  
@@ -164,6 +190,7 @@ This policy is applied under **Computer Configuration → Policies** because it 
 ![Account Lockout Policy Screenshot](images/account_lockout.png) 
   
 ---
+<a id="file-sharing"></a>
 <h2> File Sharing and Storage Management</h2>  
 
 <b>Introduction</b>  

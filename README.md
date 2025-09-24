@@ -18,7 +18,7 @@ This project focuses on building and testing Group Policies in a Windows Server 
 
 ---
 
-<a id="objectives"></a
+<a id="objectives"></a>
 <h2>Objectives</h2>
 
 - <b>Install and Configure GPMC:</b> Add Group Policy Management Console via Server Manager.  

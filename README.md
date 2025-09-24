@@ -164,6 +164,76 @@ This policy is applied under **Computer Configuration → Policies** because it 
 ![Account Lockout Policy Screenshot](images/account_lockout.png) 
   
 ---
+<h2> File Sharing and Storage Management</h2>  
+
+<b>Introduction</b>  
+File sharing is an essential feature in Active Directory environments, enabling centralized storage and controlled access to organizational data. Instead of users storing files locally, administrators configure shared folders on file servers, apply permissions, and make them accessible to domain users. To further secure and optimize storage usage, tools such as **File Server Resource Manager (FSRM)** are implemented to apply quotas and file screening rules.  
+
+---
+
+<b>Implementation of File Sharing</b>  
+
+- Open **File Explorer** → select a drive → create a new folder.  
+- Right-click the folder → **Properties** → go to the **Sharing** tab.  
+- Click **Advanced Sharing** → enable **Share this folder**.  
+- Under **Permissions**, type the domain name and click on check users then click on **Domain Users** and add.  
+- On the **Security tab**, configure **NTFS permissions** to provide granular control (e.g., Read, Modify, or Full Control) based on user roles.  
+
+This ensures that users can only access files they are authorized to use while administrators maintain full control.
+![File sharing](images/domain_user_linking.png) 
+
+---
+
+<b>Drive Mapping for Access</b>  
+
+On the client machine, users accessed the shared folder using the **Map Network Drive** option:  
+
+- Open **File Explorer** → right-click on **This PC** → choose **Map network drive**.  
+- Select a drive letter and provide the path of the shared folder (e.g., `\\ServerName\ShareName`).  
+- Connect to the drive and access the shared folder.  
+
+Note: Manual mapping is not persistent after a system reboot. To resolve this, a **Group Policy Object (GPO)** was configured to automatically map network drives for domain users, ensuring consistent access.  
+![Drive Mapping preference](images/drive_mapping_preference.png) 
+---
+
+<b>Quotas with FSRM</b>  
+
+To manage disk usage, I implemented quotas using **File Server Resource Manager (FSRM):**  
+
+- Open **FSRM** → navigate to **Quota Management**.  
+- Right-click on **Quotas** → select **Create Quota**.  
+- Set the quota path to the shared folder.  
+- Define quota properties, including:  
+  - Limit size (e.g., 500 MB or 1 GB per folder).  
+  - **Hard quota** (prevents storage beyond the limit).  
+  - **Notification thresholds** (alerts when usage reaches a defined percentage).  
+
+This ensures efficient storage usage and prevents users from consuming excessive disk space.  
+
+---
+
+<b>File Screening with FSRM</b>  
+
+To control what file types users can store:  
+
+- Open **FSRM** → go to **File Screening Management**.  
+- Create a new **File Screen** and apply it to the shared folder.  
+- Select a **File Screen Template** (e.g., block executables, music, or video files).  
+
+File screening ensures only business-related files are stored, reducing risks of malware, copyright issues, or unnecessary storage consumption.
+
+![File Screening](images/file_screening.png) 
+---
+
+<b>Importance of File Sharing and FSRM</b>  
+
+By combining shared folder permissions, persistent drive mapping via GPO, and FSRM policies, organizations achieve:  
+
+- Centralized access to resources.  
+- Controlled permissions through NTFS and share-level restrictions.  
+- Efficient storage usage with quotas.  
+- Improved security and compliance with file screening.  
+This creates a **secure, well-managed, and user-friendly file storage system** within the Active Directory environment.  
 
   
   
